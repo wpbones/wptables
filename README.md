@@ -1,30 +1,30 @@
-# Pure CSS tabs for WP Bones
+# WP Tables for WP Bones
 
-Pure CSS tabs for WordPress/WP Bones
+A fluent implementation of WordPress WP List Table for WP Bones
 
-[![Latest Stable Version](https://poser.pugx.org/wpbones/pure-css-tabs/v/stable)](https://packagist.org/packages/wpbones/pure-css-tabs)
-[![Total Downloads](https://poser.pugx.org/wpbones/pure-css-tabs/downloads)](https://packagist.org/packages/wpbones/pure-css-tabs)
-[![License](https://poser.pugx.org/wpbones/pure-css-tabs/license)](https://packagist.org/packages/wpbones/pure-css-tabs)
+[![Latest Stable Version](https://poser.pugx.org/wpbones/wptables/v/stable)](https://packagist.org/packages/wpbones/wptables)
+[![Total Downloads](https://poser.pugx.org/wpbones/wptables/downloads)](https://packagist.org/packages/wpbones/wptables)
+[![License](https://poser.pugx.org/wpbones/wptables/license)](https://packagist.org/packages/wpbones/wptables)
 
 ## Installation
 
 You can install third party packages by using:
 
-    $ php bones require wpbones/pure-css-tabs
+    $ php bones require wpbones/wptables
    
 I advise to use this command instead of `composer require` because doing this an automatic renaming will done.  
 
 You can use composer to install this package:
 
-    $ composer require wpbones/pure-css-tabs
+    $ composer require wpbones/wptables
 
-You may also to add `"wpbones/pure-css-tabs": "^1.0"` in the `composer.json` file of your plugin:
+You may also to add `"wpbones/wptables": "^1.0"` in the `composer.json` file of your plugin:
  
 ```json
   "require": {
     "php": ">=5.5.9",
     "wpbones/wpbones": "~0.8",
-    "wpbones/pure-css-tabs": "~1.0"
+    "wpbones/wptables": "~1.0"
   },
 ```
 
@@ -33,161 +33,128 @@ and run
 
     $ composer install
     
-Alternatively, you can get the `src/resources/assets/less/wpbones-tabs.less` and then compile it, or get directly the `src/public/css/wpbones-tabs.css` files.    
-Also, you can get pre-compiled minified version `src/public/css/wpbones-tabs.min.css`.
+## How to 
 
-## Enqueue for Controller
+You can use WP Tables either like subclass or like fluent class instance.
 
-You can use the provider to enqueue the styles.
+### Subclassing
 
-```php
-public function index()
-{
-  // enqueue the minified version
-  PureCSSTabsProvider::enqueueStyles();
-  
-  // ...
-  
-}
-```
-
-## PureCSSTabsProvider
-
-This is a static class autoloaded by composer. You can use it to enqueue or get the styles path:
-
-```php
-// enqueue the minified version
-PureCSSTabsProvider::enqueueStyles();
-
-// enqueue the flat version
-PureCSSTabsProvider::enqueueStyles( false );
-    
-// return the absolute path of the minified css
-PureCSSTabsProvider::css();
-
-// return the absolute path of the flat css
-PureCSSTabsProvider::css();   
-```
-
-## HTML markup
-
-```html
-<!-- main tabs container -->
-<div class="wpbones-tabs">
-
-  <!-- first tab -->
-  <input id="tab-1" type="radio" name="tabs" checked="checked" aria-hidden="true">
-  <label for="tab-1" tabindex="0"><?php _e( 'Database' ) ?</label>
-  <div class="wpbones-tab">
-    <h3>Content</h3>
-  </div>
-  
-  <!-- second tab -->
-  <input id="tab-2" type="radio" name="tabs" aria-hidden="true">
-  <label for="tab-2" tabindex="0"><?php _e( 'Posts' ) ?></label>
-  <div class="wpbones-tab">
-    <h3>Content</h3>
-  </div>  
-  
-  <!-- son on... -->
-  
-</div>
-```
-
-Of course, you may use the **fragment** feature to include the single tabs:
-
-```html
-<!-- main tabs container -->
-<div class="wpbones-tabs">
-
-  <!-- first tab -->
-  <?php echo WPkirk()->view( 'folder.tab1' ) ?>
-  
-  <!-- second tab -->
-  <?php echo WPkirk()->view( 'folder.tab2' ) ?>
-  
-  <!-- son on... -->
-  
-</div>
-```
- In `/folder/tab1.php` you just insert the following markup:
+As subclass class instance you may create a your own class as show below:
  
- ```html
-<!-- first tab -->
-<input id="tab-1" type="radio" name="tabs" checked="checked" aria-hidden="true">
-<label for="tab-1" tabindex="0"><?php _e( 'Database' ) ?></label>
-<div class="wpbones-tab">
-  <h3>Content</h3>
-</div>
-```
+```php
+<?php
 
-## Customize
+namespace WPKirk\Http\Controllers;
 
-Of course, you can edit both of CSS or LESS files in order to change the appearance of tabs.
-In the LESS file, you'll find the color variable as well.
+use WPKirk\WPTables\Html\WPTable;
 
-```less
-@wpbones-tab-border-color : #aaa;
-@wpbones-tab-responsive-accordion-border : #ddd;
-@wpbones-tab-disabled : #ddd;
-@wpbones-tab-content-color : #fff;
-```
+class ExampleTable extends WPTable
+{
+  
+  protected $name = 'Discos';
 
-> :pushpin:
->
-> Anyway, the best way to customize your tabs is override the default styles. Otherwise, when an update will be done you'll lose your customization.
+  public function getColumnsAttribute()
+  {
+    return [
+      'id'          => 'Name',
+      'description' => 'Description',
+    ];
+  }
 
-## Helper
+  public function getItems( $args = [] )
+  {
 
-In addition, you can use some methods provided by `PureCSSTabsProvider` class.
-In your HTML view you might use:
+    $fake = [];
+
+    for( $i = 0; $i < 20; $i++ ) {
+      $fake[] = [
+        'id' => "Example {$i}",
+        'description' => 'Some description...'
+      ];
+    }
+
+    return $fake;
+
+  }
+}
+``` 
+
+In your view controller you have to use the `load` method in order to register the screen options:
 
 ```php
-    /**
-     * Display tabs by array
-     *
-     *     self::tabs(
-     *       'tab-1' => [ 'label' => 'Tab 1', 'content' => 'Hello', 'selected' => true ],
-     *       'tab-2' => [ 'label' => 'Tab 1', 'content' => 'Hello' ],
-     *       ...
-     *     );
-     *
-     * @param array $array
-     */
-    WPKirk\PureCSSTabs\PureCSSTabsProvider::tabs(
-      'tab-1' => [ 'label' => 'Tab 1', 'content' => 'Hello', 'selected' => true ],
-      'tab-2' => [ 'label' => 'Tab 1', 'content' => 'Hello' ],
-      ...
-    );
-```
+...
+  public function load()
+  {
+    ExampleTable::registerScreenOption();
+  }
 
-Also, you can use `openTab()` and `closeTab()` methods:
+  public function index()
+  {
+    $table = new ExampleTable();
+
+    return WPKirk()
+      ->view( 'dashboard.table' )
+      ->with( 'table', $table );
+  }
+...  
+```
+In your `ExampleTable` you may override:
 
 ```php
-  /**
-   * Display the open tab.
-   *
-   * @param string $label    The label of tab.
-   * @param null   $id       Optional. ID of tab. If null, will sanitize_title() the label.
-   * @param bool   $selected Optional. Default false. TRUE for checked.
-   */
-   public static function openTab( $label, $id = null, $selected = false ) {}
+
+public function getCheckBoxValueAttribute( $item )
+{
+   return $item[ 'my_colum' ];
+}
+
+// or
+
+public function getCheckBoxColumnNameAttribute()
+{
+   return 'my_colum';
+}
+
 ```
 
-```html
-<div class="wpbones-tabs">
+This will be the value used in the checkbox value.
 
-  <?php WPKirk\PureCSSTabs\PureCSSTabsProvider::openTab( 'Tab 1', null, true ) ?>
-    <h2>Hello, world! I'm the content of tab-1</h2>
-  <?php WPKirk\PureCSSTabs\PureCSSTabsProvider::closeTab ?>
-    
-  <?php WPKirk\PureCSSTabs\PureCSSTabsProvider::openTab( 'Tab 2' ) ?>
-    <h2>Hello, world! I'm the content of tab-2</h2>
-  <?php WPKirk\PureCSSTabs\PureCSSTabsProvider::closeTab ?>
-    
-</div>    
+### Fluent
+
+```php
+...
+  public function loadFluentExample()
+  {
+    WPTable::name( 'Books' )
+           ->screenOptionLabel( 'Rows' )
+           ->registerScreenOption();
+  }
+  
+  public function indexFluentExample()
+  {
+
+    $items = [];
+
+    for ( $i = 0; $i < 20; $i++ ) {
+      $items[] = [
+        'id'          => "Book {$i}",
+        'description' => 'Some description...',
+      ];
+    }
+
+    $table = WPTable::name( 'Books' )
+                    ->singular( 'Book' )
+                    ->plural( 'Books' )
+                    ->columns(
+                      [
+                        'id'          => 'Name',
+                        'description' => 'Description',
+                      ]
+                    )
+                    ->setItems( $items );
+
+    return WPKirk()
+      ->view( 'dashboard.table' )
+      ->with( 'table', $table );
+  }
+
 ```
-> :pushpin:
->
-> Remember, in the example above I have used `WPKirk` base namespace. You should replace it with your own namespace.
-

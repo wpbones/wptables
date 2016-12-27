@@ -4,7 +4,7 @@
   "homepage": "https://github.com/wpbones/wptables",
   "license": "MIT",
   "type": "library",
-  "description": "WP Tables Fluent implementation for WP Bones",
+  "description": "A fluent implementation of WordPress WP List Table for WP Bones",
   "keywords": [
     "WP Table",
     "WP Bones"

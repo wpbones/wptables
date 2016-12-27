@@ -20,6 +20,8 @@ abstract class AbstractWPTable extends \WP_List_Table
 
   protected $plural;
 
+  protected $name;
+
   protected $ajax = false;
 
   protected $itemPerPageName;
@@ -123,6 +125,18 @@ abstract class AbstractWPTable extends \WP_List_Table
     add_screen_option( 'per_page', $args );
   }
 
+  public function getNameAttribute()
+  {
+    return empty( $this->name ) ? get_called_class() : $this->name;
+  }
+
+  public function setNameAttribute( $value )
+  {
+    $this->name = $value;
+
+    return $this;
+  }
+
   public function getSingularAttribute()
   {
     return $this->singular;
@@ -163,7 +177,7 @@ abstract class AbstractWPTable extends \WP_List_Table
 
   public function getIdAttribute()
   {
-    return sanitize_title( get_called_class() );
+    return sanitize_title( $this->getNameAttribute() );
   }
 
   public function getDefaultItemPerPageAttribute()
@@ -244,11 +258,6 @@ abstract class AbstractWPTable extends \WP_List_Table
     return $this->getSortableColumnsAttribute();
   }
 
-  public function getCheckBoxAttribute( $item )
-  {
-    // you can override this method
-  }
-
   /**
    * Render the bulk edit checkbox
    *
@@ -258,11 +267,22 @@ abstract class AbstractWPTable extends \WP_List_Table
    */
   public function column_cb( $item )
   {
-    if ( $this->checkBoxes && method_exists( $this, 'getCheckBoxAttribute' ) ) {
+    if ( $this->checkBoxes ) {
+
+      if ( method_exists( $this, 'getCheckBoxValueAttribute' ) ) {
+        $value = $this->getCheckBoxValueAttribute( $item );
+      }
+      else if ( method_exists( $this, 'getCheckBoxColumnNameAttribute' ) ) {
+        $value = $item[ $this->getCheckBoxColumnNameAttribute() ];
+      }
+      else {
+        $value = $item[ $this->get_primary_column() ];
+      }
+
       return sprintf(
         '<input type="checkbox" name="%s[]" value="%s" />',
         $this->getIdAttribute(),
-        $this->getCheckBoxAttribute( $item )
+        $value
       );
     }
   }
