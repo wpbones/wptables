@@ -1,0 +1,34 @@
+{
+  "name": "wpbones/wptables",
+  "version": "1.0.0",
+  "homepage": "https://github.com/wpbones/wptables",
+  "license": "MIT",
+  "type": "library",
+  "description": "WP Tables Fluent implementation for WP Bones",
+  "keywords": [
+    "WP Table",
+    "WP Bones"
+  ],
+  "authors": [
+    {
+      "name": "Giovambattista Fazioli",
+      "email": "giovambattista.fazioli@gmail.com",
+      "homepage": "http://undolog.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wpbones/wptables.git"
+  },
+  "support": {
+    "email": "giovambattista.fazioli@gmail.com",
+    "issues": "https://github.com/wpbones/wptables/issues"
+  },
+  "autoload": {
+    "psr-4": {
+      "WPKirk\\WPTables\\": "src/"
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": "true"
+}
