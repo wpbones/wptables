@@ -120,11 +120,19 @@ This will be the value used in the checkbox value.
 
 ### Fluent
 
+If you like use the `WPTable` as fluent instance, you have to set the columns twice.
+
 ```php
 ...
   public function loadFluentExample()
   {
     WPTable::name( 'Books' )
+           ->columns(
+              [
+                'id'          => 'Name',
+                'description' => 'Description',
+              ]
+            )
            ->screenOptionLabel( 'Rows' )
            ->registerScreenOption();
   }
