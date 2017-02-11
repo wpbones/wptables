@@ -6,6 +6,8 @@ A fluent implementation of WordPress WP List Table for WP Bones
 [![Total Downloads](https://poser.pugx.org/wpbones/wptables/downloads)](https://packagist.org/packages/wpbones/wptables)
 [![License](https://poser.pugx.org/wpbones/wptables/license)](https://packagist.org/packages/wpbones/wptables)
 
+![images](/wpbones/wptables/wiki/images/screenshot-1.png)
+
 ## Installation
 
 You can install third party packages by using:
