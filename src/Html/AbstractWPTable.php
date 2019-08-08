@@ -851,7 +851,7 @@ abstract class AbstractWPTable extends \WP_List_Table
 
     <?php if ( ! empty( $this->getAddNewUri() ) && ! empty( $this->getAddNewLabelAttribute() ) ) : ?>
 
-    <a href="#"
+    <a href="<?php echo esc_url( $this->getAddNewUri() ); ?>"
        class="page-title-action">
       <?php echo $this->getAddNewLabelAttribute() ?>
     </a>
