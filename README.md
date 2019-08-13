@@ -24,7 +24,7 @@ You may also to add `"wpbones/wptables": "^1.0"` in the `composer.json` file of 
  
 ```json
   "require": {
-    "php": ">=5.5.9",
+    "php": ">=7.0",
     "wpbones/wpbones": "~0.8",
     "wpbones/wptables": "~1.0"
   },
