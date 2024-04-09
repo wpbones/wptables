@@ -12,20 +12,24 @@ A fluent implementation of WordPress WP List Table for WP Bones
 
 You can install third party packages by using:
 
-    $ php bones require wpbones/wptables
+```sh
+php bones require wpbones/wptables
+```
    
 I advise to use this command instead of `composer require` because doing this an automatic renaming will done.  
 
 You can use composer to install this package:
 
-    $ composer require wpbones/wptables
+```sh
+composer require wpbones/wptables
+```
 
 You may also to add `"wpbones/wptables": "^1.0"` in the `composer.json` file of your plugin:
  
 ```json
   "require": {
     "php": ">=7.0",
-    "wpbones/wpbones": "~0.8",
+    "wpbones/wpbones": "~1.0",
     "wpbones/wptables": "~1.0"
   },
 ```
@@ -33,7 +37,9 @@ You may also to add `"wpbones/wptables": "^1.0"` in the `composer.json` file of 
 
 and run 
 
-    $ composer install
+```sh
+composer install
+```
     
 ## How to 
 

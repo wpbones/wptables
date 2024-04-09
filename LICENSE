@@ -1,4 +1,4 @@
-Copyright (c) 2016, Giovambattista Fazioli
+Copyright (c) 2024, Giovambattista Fazioli
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

@@ -1,6 +1,5 @@
 {
   "name": "wpbones/wptables",
-  "version": "1.0.3",
   "homepage": "https://github.com/wpbones/wptables",
   "license": "MIT",
   "type": "library",
@@ -13,13 +12,9 @@
     {
       "name": "Giovambattista Fazioli",
       "email": "giovambattista.fazioli@gmail.com",
-      "homepage": "http://undolog.com"
+      "homepage": "http://wpbones.wordpress.com"
     }
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wpbones/wptables.git"
-  },
   "support": {
     "email": "giovambattista.fazioli@gmail.com",
     "issues": "https://github.com/wpbones/wptables/issues"

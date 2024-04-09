@@ -452,7 +452,7 @@ abstract class AbstractWPTable extends \WP_List_Table
 
   /**
    * Will call a method when find a bulk action.
-   * For example, if the acrion is "keep_on_trash" then you will have `processBulkActionKeepOnTrash()` method.
+   * For example, if the action is "keep_on_trash" then you will have `processBulkActionKeepOnTrash()` method.
    *
    * @return bool
    */
@@ -497,7 +497,7 @@ abstract class AbstractWPTable extends \WP_List_Table
 
   /**
    * Usually, you shouldn't override this method.
-   * Instead use `getViewCount{Viewkey}`.
+   * Instead use `getViewCount{ViewKey}`.
    *
    * This will return the number of items for selected view.
    *
@@ -522,7 +522,7 @@ abstract class AbstractWPTable extends \WP_List_Table
 
   /**
    * Usually, you shouldn't override this method.
-   * Instead use `getViewQueryArg{Viewkey}`.
+   * Instead use `getViewQueryArg{ViewKey}`.
    *
    * This will return an empty array for `all` key or your query args like an associative
    * array, look like:
