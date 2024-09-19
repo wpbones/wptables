@@ -11,12 +11,12 @@
   "authors": [
     {
       "name": "Giovambattista Fazioli",
-      "email": "giovambattista.fazioli@gmail.com",
-      "homepage": "http://wpbones.wordpress.com"
+      "email": "wpbones.info@gmail.com",
+      "homepage": "https://wpbones.vercel.app/docs/Packages/official-packages"
     }
   ],
   "support": {
-    "email": "giovambattista.fazioli@gmail.com",
+    "email": "wpbones.info@gmail.com",
     "issues": "https://github.com/wpbones/wptables/issues"
   },
   "autoload": {

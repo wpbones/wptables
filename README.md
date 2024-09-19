@@ -1,55 +1,78 @@
 # WP Tables for WP Bones
 
-A fluent implementation of WordPress WP List Table for WP Bones
+<p align="center">
 
-[![Latest Stable Version](https://poser.pugx.org/wpbones/wptables/v/stable)](https://packagist.org/packages/wpbones/wptables)
-[![Total Downloads](https://poser.pugx.org/wpbones/wptables/downloads)](https://packagist.org/packages/wpbones/wptables)
-[![License](https://poser.pugx.org/wpbones/wptables/license)](https://packagist.org/packages/wpbones/wptables)
+  <a href="https://packagist.org/packages/wpbones/wptables">
+  <img src="https://poser.pugx.org/wpbones/wptables/v/stable?style=for-the-badge" alt="Latest Stable Version" />
+  </a>
+
+  <a href="https://packagist.org/packages/wpbones/wptables">
+   <img src="https://poser.pugx.org/wpbones/wptables/v/unstable?style=for-the-badge" alt="Latest Unstable Version" />
+  </a>
+
+  <a href="https://packagist.org/packages/wpbones/wptables">
+   <img src="https://poser.pugx.org/wpbones/wptables/downloads?style=for-the-badge" alt="Total Downloads" />
+  </a>
+
+  <a href="https://packagist.org/packages/wpbones/wptables">
+   <img src="https://poser.pugx.org/wpbones/wptables/license?style=for-the-badge" alt="License" />
+  </a>
+
+  <a href="https://packagist.org/packages/wpbones/wptables">
+   <img src="https://poser.pugx.org/wpbones/wptables/d/monthly?style=for-the-badge" alt="Monthly Downloads" />
+  </a>
+
+</p>
 
 ![images](https://github.com/wpbones/wptables/wiki/images/screenshot-1.png)
+
+A fluent implementation of WordPress WP List Table for WP Bones
+
+## Requirements
+
+This package works with a WordPress plugin written with [WP Bones framework library](https://github.com/wpbones/WPBones).
 
 ## Installation
 
 You can install third party packages by using:
 
-```sh
+```sh copy
 php bones require wpbones/wptables
 ```
-   
-I advise to use this command instead of `composer require` because doing this an automatic renaming will done.  
+
+I advise to use this command instead of `composer require` because doing this an automatic renaming will done.
 
 You can use composer to install this package:
 
-```sh
+```sh copy
 composer require wpbones/wptables
 ```
 
 You may also to add `"wpbones/wptables": "^1.0"` in the `composer.json` file of your plugin:
- 
-```json
+
+```json copy filename="composer.json" {4}
   "require": {
-    "php": ">=7.0",
-    "wpbones/wpbones": "~1.0",
+    "php": ">=7.4",
+    "wpbones/wpbones": "~0.8",
     "wpbones/wptables": "~1.0"
   },
 ```
 
+and run
 
-and run 
-
-```sh
+```sh copy
 composer install
 ```
-    
-## How to 
+
+## How to
 
 You can use WP Tables either like subclass or like fluent class instance.
 
 ### Subclassing
 
 As subclass class instance you may create a your own class as show below:
- 
-```php
+
+```php copy
 <?php
 
 namespace WPKirk\Http\Controllers;
@@ -58,7 +81,7 @@ use WPKirk\WPTables\Html\WPTable;
 
 class ExampleTable extends WPTable
 {
-  
+
   protected $name = 'Discos';
 
   public function getColumnsAttribute()
@@ -85,11 +108,11 @@ class ExampleTable extends WPTable
 
   }
 }
-``` 
+```
 
 In your view controller you have to use the `load` method in order to register the screen options:
 
-```php
+```php copy
 ...
   public function load()
   {
@@ -104,7 +127,7 @@ In your view controller you have to use the `load` method in order to register t
       ->view( 'dashboard.table' )
       ->with( 'table', $table );
   }
-...  
+...
 ```
 In your `ExampleTable` you may override:
 
@@ -130,7 +153,7 @@ This will be the value used in the checkbox value.
 
 If you like use the `WPTable` as fluent instance, you have to set the columns twice.
 
-```php
+```php copy
 ...
   public function loadFluentExample()
   {
@@ -144,7 +167,7 @@ If you like use the `WPTable` as fluent instance, you have to set the columns tw
            ->screenOptionLabel( 'Rows' )
            ->registerScreenOption();
   }
-  
+
   public function indexFluentExample()
   {
 
