@@ -24,6 +24,12 @@
 
 </p>
 
+<p align="center">
+  <a href="https://github.com/wpbones/wptables/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=wpbones/wptables" />
+  </a>
+</p>
+
 ![images](https://github.com/wpbones/wptables/wiki/images/screenshot-1.png)
 
 A fluent implementation of WordPress WP List Table for WP Bones
