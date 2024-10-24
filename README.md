@@ -1,28 +1,14 @@
 # WP Tables for WP Bones
 
-<p align="center">
+<div align="center">
 
-  <a href="https://packagist.org/packages/wpbones/wptables">
-  <img src="https://poser.pugx.org/wpbones/wptables/v/stable?style=for-the-badge" alt="Latest Stable Version" />
-  </a>
+[![Latest Stable Version](https://poser.pugx.org/wpbones/wptables/v/stable?style=for-the-badge)](https://packagist.org/packages/wpbones/wptables) &nbsp;
+[![Latest Unstable Version](https://poser.pugx.org/wpbones/wptables/v/unstable?style=for-the-badge)](https://packagist.org/packages/wpbones/wptables) &nbsp;
+[![Total Downloads](https://poser.pugx.org/wpbones/wptables/downloads?style=for-the-badge)](https://packagist.org/packages/wpbones/wptables) &nbsp;
+[![License](https://poser.pugx.org/wpbones/wptables/license?style=for-the-badge)](https://packagist.org/packages/wpbones/wptables) &nbsp;
+[![Monthly Downloads](https://poser.pugx.org/wpbones/wptables/d/monthly?style=for-the-badge)](https://packagist.org/packages/wpbones/wptables)
 
-  <a href="https://packagist.org/packages/wpbones/wptables">
-   <img src="https://poser.pugx.org/wpbones/wptables/v/unstable?style=for-the-badge" alt="Latest Unstable Version" />
-  </a>
-
-  <a href="https://packagist.org/packages/wpbones/wptables">
-   <img src="https://poser.pugx.org/wpbones/wptables/downloads?style=for-the-badge" alt="Total Downloads" />
-  </a>
-
-  <a href="https://packagist.org/packages/wpbones/wptables">
-   <img src="https://poser.pugx.org/wpbones/wptables/license?style=for-the-badge" alt="License" />
-  </a>
-
-  <a href="https://packagist.org/packages/wpbones/wptables">
-   <img src="https://poser.pugx.org/wpbones/wptables/d/monthly?style=for-the-badge" alt="Monthly Downloads" />
-  </a>
-
-</p>
+</div>
 
 <p align="center">
   <a href="https://github.com/wpbones/wptables/graphs/contributors">
