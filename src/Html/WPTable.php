@@ -2,13 +2,9 @@
 
 namespace WPKirk\WPTables\Html;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
   exit;
 }
 
 
-class WPTable extends AbstractWPTable
-{
-
-}
-
+class WPTable extends AbstractWPTable {}
