@@ -163,7 +163,7 @@ public function processBulkActionDelete( $items )
 
 The method runs only when the request carries the nonce that the table form prints (`bulk-{plural}`). The form is sent with `GET`, which the CSRF check of WP Bones 3 does not cover, so the table checks it itself: a request without the nonce, as a link from another site would be, shows "The link you followed has expired." and runs nothing. Since 1.1.0.
 
-To check a nonce of your own instead, override `isValidBulkActionNonce()`.
+A link of your own that runs one of these actions, a row action for example, has to carry the same nonce. Inside the table class, sign it with `wp_nonce_url( $url, 'bulk-' . $this->_args['plural'] )`. To check a nonce of your own instead, override `isValidBulkActionNonce()`.
 
 ### Fluent
 

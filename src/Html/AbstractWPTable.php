@@ -475,7 +475,11 @@ class AbstractWPTable extends \WP_List_Table
       if (method_exists($this, $method)) {
 
         if (! $this->isValidBulkActionNonce()) {
-          $this->errorMessage = __('The link you followed has expired.');
+          // Another table on the same page, with an action of the same name, may have sent it:
+          // complain only when the request names items of this table.
+          if (isset($_REQUEST[$this->getIdAttribute()])) {
+            $this->errorMessage = __('The link you followed has expired.');
+          }
 
           return false;
         }
