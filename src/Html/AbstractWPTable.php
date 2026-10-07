@@ -458,6 +458,10 @@ class AbstractWPTable extends \WP_List_Table
    * Will call a method when find a bulk action.
    * For example, if the action is "keep_on_trash" then you will have `processBulkActionKeepOnTrash()` method.
    *
+   * The method is called only when the request carries the nonce the table form prints: the form is
+   * sent with GET, which the CSRF check of WP Bones 3 leaves alone, so without it any link could
+   * make a logged-in user run an action. A request without it shows an error and runs nothing.
+   *
    * @return bool
    */
   protected function processBulkActions()
@@ -470,6 +474,12 @@ class AbstractWPTable extends \WP_List_Table
 
       if (method_exists($this, $method)) {
 
+        if (! $this->isValidBulkActionNonce()) {
+          $this->errorMessage = __('The link you followed has expired.');
+
+          return false;
+        }
+
         $items = isset($_REQUEST[$this->getIdAttribute()]) ? $_REQUEST[$this->getIdAttribute()] : [];
 
         $this->{$method}($items);
@@ -479,6 +489,19 @@ class AbstractWPTable extends \WP_List_Table
     }
 
     return false;
+  }
+
+  /**
+   * Whether the request carries the nonce that WP_List_Table prints in the table form,
+   * `bulk-{plural}`. Override it only to check a nonce of your own instead.
+   *
+   * @return bool
+   */
+  protected function isValidBulkActionNonce()
+  {
+    $nonce = isset($_REQUEST['_wpnonce']) && is_string($_REQUEST['_wpnonce']) ? sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])) : '';
+
+    return (bool) wp_verify_nonce($nonce, 'bulk-' . $this->_args['plural']);
   }
 
   /**

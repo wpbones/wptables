@@ -40,13 +40,13 @@ You can use composer to install this package:
 composer require wpbones/wptables
 ```
 
-You may also to add `"wpbones/wptables": "^1.0"` in the `composer.json` file of your plugin:
+You may also to add `"wpbones/wptables": "^1.1"` in the `composer.json` file of your plugin:
 
 ```json copy filename="composer.json" {4}
   "require": {
-    "php": ">=7.4",
-    "wpbones/wpbones": "~0.8",
-    "wpbones/wptables": "~1.0"
+    "php": ">=8.1",
+    "wpbones/wpbones": "^3.0",
+    "wpbones/wptables": "^1.1"
   },
 ```
 
@@ -140,6 +140,30 @@ public function getCheckBoxColumnNameAttribute()
 ```
 
 This will be the value used in the checkbox value.
+
+### Bulk actions
+
+`getBulkActionsForView()` lists the actions of the drop-down menu, and a method named after each one runs it: the `keep_on_trash` action calls `processBulkActionKeepOnTrash()`, with the checked values.
+
+```php copy
+public function getBulkActionsForView( $view )
+{
+  return [
+    'delete' => __( 'Delete' ),
+  ];
+}
+
+public function processBulkActionDelete( $items )
+{
+  // delete $items
+
+  $this->successMessage = 'Deleted ' . count( $items ) . ' items';
+}
+```
+
+The method runs only when the request carries the nonce that the table form prints (`bulk-{plural}`). The form is sent with `GET`, which the CSRF check of WP Bones 3 does not cover, so the table checks it itself: a request without the nonce, as a link from another site would be, shows "The link you followed has expired." and runs nothing. Since 1.1.0.
+
+To check a nonce of your own instead, override `isValidBulkActionNonce()`.
 
 ### Fluent
 
