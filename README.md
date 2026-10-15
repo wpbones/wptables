@@ -9,6 +9,11 @@
 
 </div>
 
+<div align="center">
+  <p><img src="https://raw.githubusercontent.com/wpbones/.github/main/glancecard/wptables.svg" width="880" alt="wptables at a glance, refreshed daily: commits, releases, stars, issues and pull requests, a year of commit activity, the weekly rhythm, languages, latest commits and releases, contributors" /><br>
+  <sub>Made with <a href="https://github.com/gfazioli/glancecard">glancecard</a> · refreshed daily</sub></p>
+</div>
+
 <p align="center">
   <a href="https://github.com/wpbones/wptables/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=wpbones/wptables" />
